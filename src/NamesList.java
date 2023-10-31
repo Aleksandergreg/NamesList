@@ -17,7 +17,7 @@ public class NamesList {
                 Welcome to the NamesList - enterprise edition.
                 ----------------------------------------------
                 """);
-
+        loadListOfNames();
         Scanner sc = new Scanner(System.in);
         int choice = 99;
         while( choice != 0) {
@@ -107,6 +107,7 @@ public class NamesList {
     }
 
     private void exit() {
+        saveListOfNames();
         System.out.println("""
                 ...
                 Thank you for using NamesList - enterprise edition.
