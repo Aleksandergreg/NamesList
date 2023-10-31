@@ -1,3 +1,6 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -60,15 +63,35 @@ public class NamesList {
         System.out.println("Done");
     }
 
-    private void saveListOfNames() {
-        // TODO: Implement save of the names list to a file
-        System.out.println("NOT IMPLEMENTED");
+    private void saveListOfNames(){
+       File f = new File("names.txt");
+       try {
+           PrintStream output = new PrintStream(f);
+           for (int index = 0 ; index < names.size() ; index++) {
+               output.println(names.get(index));
+           }
+           output.close();
+       } catch (IOException e) {
+           e.printStackTrace();
+       }
     }
 
-    private void loadListOfNames() {
-        // TODO: Implement load of the names list from a file
-        System.out.println("NOT IMPLEMENTED");
+   private void loadListOfNames() {
+        File f = new File("names.txt");
+        Scanner scanner = null;
+
+        try {
+            scanner  = new Scanner(f);
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        while (scanner.hasNextLine())
+        names.add(scanner.nextLine());
+
+        scanner.close();
     }
+
 
     private void displayListOfNames() {
         for(String name : names) {
